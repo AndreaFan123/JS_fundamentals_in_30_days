@@ -1,5 +1,7 @@
 # Day 1: Type Conversion vs. Type Coercion
 
+![Day_1_type_conversion_type_coercion](./Day%20-%201.png)
+
 ## Table of Contents
 
 - [Type Conversion](#type-conversion)
@@ -15,8 +17,6 @@
       - [Logic](#logic)
       - [Logical OR and Logical AND](#logical-or-and-logical-and)
       - [Logical NOT](#logical-not)
-
-![Day_1_type_conversion_type_coercion](./Day%20-%201.png)
 
 The definition of type conversion in ECMAScript:
 
