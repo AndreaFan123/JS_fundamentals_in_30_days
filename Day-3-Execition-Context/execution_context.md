@@ -1,6 +1,6 @@
 # Day 3: Execution Context
 
-![Day 3: Execution Context](./Day%20-%203.png)
+![Day 3: Execution Context](./Day-3.png)
 
 ## Table of Contents
 

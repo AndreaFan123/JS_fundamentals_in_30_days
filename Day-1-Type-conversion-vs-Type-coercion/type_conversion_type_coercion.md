@@ -1,6 +1,6 @@
 # Day 1: Type Conversion vs. Type Coercion
 
-![Day_1_type_conversion_type_coercion](./Day%20-%201.png)
+![Day_1_type_conversion_type_coercion](./Day-1.png)
 
 ## Table of Contents
 

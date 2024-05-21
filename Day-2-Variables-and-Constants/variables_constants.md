@@ -1,6 +1,6 @@
 # Day 2: Variables and Constants
 
-![Variables](./Day%20-%202.png)
+![Variables](./Day-2.png)
 
 ## Table of Contents
 

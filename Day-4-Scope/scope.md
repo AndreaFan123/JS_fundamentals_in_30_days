@@ -1,6 +1,6 @@
-# Scope
+# Day 4: Scope
 
-![scope](./Day%20-%204.png)
+![scope](./Day-4.png)
 
 ## Table of Contents:
 
