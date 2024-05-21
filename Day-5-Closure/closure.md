@@ -4,6 +4,12 @@
 
 ## Table of Contents
 
+- [Characteristics of Closure](#characteristics-of-closure)
+- [Characteristics of scope chain](#characteristics-of-scope-chain)
+- [Why outer function cannot access inner function variable?](#why-outer-function-cannot-access-inner-function-variable)
+- [Try to explain the following code:](#try-to-explain-the-following-code)
+- [What is the benefit of using closure?](#what-is-the-benefit-of-using-closure)
+
 ---
 
 ### Characteristics of Closure
