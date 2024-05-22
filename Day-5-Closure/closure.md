@@ -48,7 +48,7 @@ Let's review when does lexical scope is created:
 
 - When a function is declared, which is in creation phase, instead of execution phase, that means the scope of a function is determined at the time of declaration, establishing the range of accessible variables during its creation phase.
 
-- In JavaScript, the scope chain is unidirectional, looking up variables from the inside out, allowing inner functions to remember and access variables from outer functions, even after the outer function has finished executing.
+- In JavaScript, the scope chain is unidirectional, looking up variables from the inside out, allowing inner functions to remember and access variables from outer functions, even to the global scope and even after the outer function has finished executing.
 
 #### Try to explain the following code:
 
@@ -187,7 +187,7 @@ delay(() => console.log("Hello, World!"), 1000); // Output: Hello, World! (after
 - **Memory leak**
   We mentioned that using closure can keep the state, can do memoization, but if we don't use it properly, it can cause memory leak due to the closure keeping the reference to the outer scope, even if the outer scope is no longer needed.
 
-  That's keep in simple, even if the outer function is ended, the inner function still alive(keeps the reference to the outer scope).
+  That's keep in simple, even if the outer function is ended, the inner function still alive (keeps the reference to the outer scope).
 
   ```js
   function outer() {
@@ -231,7 +231,7 @@ delay(() => console.log("Hello, World!"), 1000); // Output: Hello, World! (after
 
 ### Conclusion
 
-- Closure is determined when a function is declared at the time of creation, in a simple term, it determine when JS engine "read" the code, and this is called **static scope** or **lexical scope**.
+- Closure is determined when a function is declared at the time of creation, in a simple term, it determine when JS engine "read" the code, and this is called **static scope** or **lexical scope**, the opposite of **dynamic scope** which is determined when the function is called.
 - Function with closure is not a pure function.
 - Closure can keep the state, do memoization, delay execution, but it can cause memory leak, performance issues, and hard to debug.
 - Only inner function can access the outer function variable, but outer function cannot access the inner function variable.
