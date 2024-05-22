@@ -8,7 +8,9 @@
 - [Characteristics of scope chain](#characteristics-of-scope-chain)
 - [Why outer function cannot access inner function variable?](#why-outer-function-cannot-access-inner-function-variable)
 - [Try to explain the following code:](#try-to-explain-the-following-code)
-- [What is the benefit of using closure?](#what-is-the-benefit-of-using-closure)
+- [Pros of using closure?](#pros-of-using-closure)
+- [Cons of using closure?](#cons-of-using-closure)
+- [Conclusion](#conclusion)
 
 ---
 
@@ -16,6 +18,8 @@
 
 - If a function with closures, we can say that this function is not a pure function.
 - A closure in JavaScript refers to a function that remembers its `lexical environment` at the time of creation.
+
+---
 
 ### Characteristics of scope chain
 
@@ -42,9 +46,9 @@ Below demonstrates the execution context of the above code:
 
 Let's review when does lexical scope is created:
 
-- When a function is declared, which is in creation phase, instead of execution phase.
+- When a function is declared, which is in creation phase, instead of execution phase, that means the scope of a function is determined at the time of declaration, establishing the range of accessible variables during its creation phase.
 
-And based on scope chain, think of it a path that allows inner function to go up to the outer function, but not the other way around.
+- In JavaScript, the scope chain is unidirectional, looking up variables from the inside out, allowing inner functions to remember and access variables from outer functions, even after the outer function has finished executing.
 
 #### Try to explain the following code:
 
@@ -69,9 +73,9 @@ outerFunction()("John"); // Output: Hello, John
 3. We declare a variable `inner` and assign the return value of `outerFunction` to it, which is `innerFunction`.
 4. We call `inner` with a argument `John`.
 
-#### What is the benefit of using closure?
+#### Pros of using closure?
 
-- Data privacy / Encapsulation
+- **Data privacy / Encapsulation / keeping state**
 
 ```js
 function counter() {
@@ -93,7 +97,41 @@ console.log(counter2()); // Output: 1
 // They won't affect each other
 ```
 
-- Memoization
+- **Modulization**
+
+```js
+// (function() {...})() is an IIFE (Immediately Invoked Function Expression)
+function counterModule(function() {
+  // This is a private variable, only accessible within the module
+  let count = 0;
+
+  // This is a private function, only accessible within the module
+  function getCount(num) {
+    return count += num;
+  }
+
+  // This is a public function, accessible from outside the module
+  return {
+    increment: function() {
+      return ++count;
+    },
+    decrement: function() {
+      return --count;
+    },
+    getCount: function() {
+      return count;
+    },
+  };
+})();
+
+console.log(counterModule.getCount()); // Output: 0
+counterModule.increment();
+console.log(counterModule.getCount()); // Output: 1
+counterModule.decrement();
+console.log(counterModule.getCount()); // Output: 0
+```
+
+- **Memoization**
 
 Because it can remember the previous result, we can use it to cache the result.
 
@@ -129,3 +167,72 @@ console.log(square(4)); // Fetching from cache: 4, Output: 16
 console.log(square(5)); // Calculating result: 5, Output: 25
 console.log(square(5)); // Calculating result: 5, Output: 25
 ```
+
+- **Delay execution**
+
+```js
+function delayExecution() {
+  return function (fn, delay) {
+    setTimeout(fn, delay);
+  };
+}
+
+const delay = delayExecution();
+
+delay(() => console.log("Hello, World!"), 1000); // Output: Hello, World! (after 1 second)
+```
+
+#### Cons of using closure?
+
+- **Memory leak**
+  We mentioned that using closure can keep the state, can do memoization, but if we don't use it properly, it can cause memory leak due to the closure keeping the reference to the outer scope, even if the outer scope is no longer needed.
+
+  That's keep in simple, even if the outer function is ended, the inner function still alive(keeps the reference to the outer scope).
+
+  ```js
+  function outer() {
+    let outerVar = "I am outer";
+    function inner() {
+      let innerVar = "I am inner";
+      console.log(outerVar);
+    }
+    return inner;
+  }
+  ```
+
+  In the above code, the `inner` function keeps the reference to the `outer` function, even if the `outer` function is ended, the `inner` function still alive.
+
+  That's why we need to implement a cleanup function to avoid memory leak.
+
+  ```js
+  function outer() {
+    let outerVar = "I am outer";
+    function inner() {
+      let innerVar = "I am inner";
+      console.log(outerVar);
+    }
+    return inner;
+  }
+
+  const fun1 = outer();
+  fun1(); // Output: I am outer
+
+  // cleanup
+  fun1 = null;
+  ```
+
+- **Performance**
+  Because the closure keeps the reference to the outer scope, it needs to keep the scope chain, which can cause performance issues.
+
+- **Hard to debug**
+  Because the closure keeps the reference to the outer scope, it can be hard to debug, especially when the closure is deeply nested.
+
+---
+
+### Conclusion
+
+- Closure is determined when a function is declared at the time of creation, in a simple term, it determine when JS engine "read" the code, and this is called **static scope** or **lexical scope**.
+- Function with closure is not a pure function.
+- Closure can keep the state, do memoization, delay execution, but it can cause memory leak, performance issues, and hard to debug.
+- Only inner function can access the outer function variable, but outer function cannot access the inner function variable.
+- A **Scope Chain** means that the inner function can access the outer function variable,and if the outer function has no variable, it will look up to the global scope.
