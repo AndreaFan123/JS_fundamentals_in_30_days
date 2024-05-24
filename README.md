@@ -9,5 +9,8 @@ This is a 30 days of JavaScript programming language challenge aimed at helping 
 - Day 3: Execution Context
 - Day 4: Scope
 - Day 5: Closure
-- Day 6: Function
-  I also published these articles on [medium](https://medium.com/@shan32157).
+- Day 6: Object part 1
+
+## Published Articles
+
+Here is my [medium](https://medium.com/@shan32157).
