@@ -8,11 +8,11 @@
 - [How to create an object](#how-to-create-an-object)
   - [What is literal?](#what-is-literal)
   - [What is a constructor?](#what-is-a-constructor)
+  - [What is an instance?](#what-is-an-instance)
 - [Accessing object properties](#accessing-object-properties)
 - [Compute property (introduced in ES6)](#compute-property-introduced-in-es6)
 - [Property shorthand](#property-shorthand)
 - [Checking if a property exists](#checking-if-a-property-exists)
-
   - [The `in` operator](#the-in-operator)
   - [The `hasOwnProperty` method](#the-hasownproperty-method)
   - [Object.keys](#objectkeys)
