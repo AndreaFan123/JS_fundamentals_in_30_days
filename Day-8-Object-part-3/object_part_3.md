@@ -19,6 +19,8 @@ It is an abstract data type that serves as a collection of elements, with two ma
 
 It is a memory that is used to store complex data types, e.g., objects, arrays, etc.
 
+When the data type is non-primitive type, it is stored in the heap, and in stack there will be a reference / address to the data in the heap.
+
 ### What is Garbage Collection?
 
 The idea of garbage collection was invented by John McCarthy, it is a form of **automatic memory management**, to reclaim the memory occupied by objects that are no longer in use by the program.
@@ -71,3 +73,46 @@ obj1 = null;
 console.log(obj1); // null
 console.log(obj2); // {name: "John"}
 ```
+
+Let's breakdown the code above:
+
+```javascript
+let obj1 = { name: "John" };
+```
+
+- Declare a global variable called `obj1` and stored in the `stack`, then the object `{name:"John"}` is stored in the `heap`.
+
+- The `obj1` has a reference to the object `{name:"John"}`.
+- `obj1` in the stack holds a reference to the object `{name:"John}"` in the heap, like below:
+
+  ```markdown
+  obj1 ->0x01-> {name: "John"}
+  ```
+
+```javascript
+let obj2 = obj1;
+```
+
+- Declare a global variable called `obj2` and stored in the `stack`, then the reference of `obj1` is copied to `obj2`, so `obj2` also has a reference to the object `{name:"John}"`.
+
+- `obj2` in the stack holds a reference to the object `{name:"John}"` in the heap, like below:
+
+  ```markdown
+  obj1 -> 0x01 -> {name: "John"}
+  obj2 -> 0x01 -> {name: "John"}
+  ```
+
+```javascript
+obj1 = null;
+```
+
+- Assign `null` to `obj1`, the reference to the object `{name:"John}"` is removed, so the object `{name:"John}"` is no longer reachable.
+
+- `obj1` is set to `null`, it has no reference to the object `{name:"John}"` in the heap, like below:
+
+  ```markdown
+  obj1 -> null (garbage object)
+  obj2 -> 0x01 -> {name: "John"}
+  ```
+
+- `obj2` still holds a reference to the object `{name:"John}"` in the heap.
