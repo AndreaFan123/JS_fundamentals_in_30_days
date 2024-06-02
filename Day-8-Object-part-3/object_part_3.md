@@ -116,3 +116,11 @@ obj1 = null;
   ```
 
 - `obj2` still holds a reference to the object `{name:"John}"` in the heap.
+
+### Conclusion
+
+1. Two types of memory management: **stack** and **heap**.
+2. Simple data type (primitive data) is stored in the stack.
+3. Complex data type (non-primitive data) is stored in the heap.
+4. We access the complex data type in the heap through the reference (address) in the stack.
+5. When the reference to an object is lost, the object is no longer reachable, it is a garbage object, which will be removed by the garbage collector.
