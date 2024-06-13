@@ -10,7 +10,9 @@ This is a 30 days of JavaScript programming language challenge aimed at helping 
 - Day 4: Scope
 - Day 5: Closure
 - Day 6: Object part 1
+- Day 7: Object part 2
+- Day 8: Object part 3
 
 ## Published Articles
 
-Here is my [medium](https://medium.com/@shan32157).
+I also published these articles on my [medium](https://medium.com/@shan32157).

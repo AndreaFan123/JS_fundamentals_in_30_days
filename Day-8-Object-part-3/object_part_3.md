@@ -4,6 +4,14 @@
 
 ## Table of Contents
 
+- [Garbage Collection](#garbage-collection)
+- [Before we talk about Garbage Collection](#before-we-talk-about-garbage-collection)
+- [What is Garbage Collection?](#what-is-garbage-collection)
+  - [Non-automatic memory management](#non-automatic-memory-management)
+  - [Basic algorithm of Garbage Collection](#basic-algorithm-of-garbage-collection)
+- [Unreachable Objects](#unreachable-objects)
+- [Conclusion](#conclusion)
+
 ### Before we talk about Garbage Collection
 
 Here we need to understand a bit about **memory management**, we can simplify as there are two types of systems:
