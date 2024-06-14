@@ -84,7 +84,7 @@ const greeting = () => {
 
 #### Hoisting
 
-Let's review a very important concept - **Execution Context**, a execution context is created when JavaScript engine runs our code, when it runs, it creates a **global execution context**, imagine global execution context is a huge hidden map, and JavaScript will draw(store) all the variables declare with `var` and functions in the map.
+Let's review a very important concept - **Execution Context**, an execution context is created when JavaScript engine runs our code, when it runs, it creates a **global execution context**, imagine global execution context is a huge hidden map, and JavaScript will draw(store) all the variables declare with `var` and functions in the map.
 
 In this phase, only function declarations are being stored in the map, not function expressions, but why?
 
@@ -131,7 +131,7 @@ const greetingExpression = function () {
 };
 ```
 
-The terms `hoisting` happened when using **function declarations**, because in global memory, it already has the function declaration stored in the creation phase, that's why when in the execution phase, it can be invoked, on the other hand, function expression (functions assigned to variables with `let` or `const`) are not stored in the global memory in the creation phase, they are being held in the temporal dead zone (TDZ), that's why we can't access them before they are declared.
+The terms `hoisting` happened when using **function declarations**, because in global memory, it already has the function declaration stored in the creation phase, that's why when in the execution phase, it can be invoked, on the other hand, function expression (functions assigned to variables with `let` or `const`) are not stored in the global memory in the creation phase, they are being held in the temporal dead zone (TDZ), that's why we can't access them before they are executed.
 
 #### What if we use `var` to declare a function?
 
@@ -155,8 +155,6 @@ var greetingVar = function () {
 
 As you may notice that result of `greetingVar` is `undefined`, and when we try to invoke the function, it shows `TypeError`, because the function is not being stored in the global memory in the creation phase, it's just a variable with `undefined` value.
 
-#### this keyword
-
 ---
 
 ### Function Scope
@@ -176,7 +174,7 @@ console.log(message); // ReferenceError
 ```
 
 ```javascript
-// Access variables declared outside the function
+// Access variables declared in global
 const message = "Hello, World!";
 
 const greeting = function () {
@@ -186,6 +184,22 @@ const greeting = function () {
 
 ---
 
-### Recursion
+### Conclusion
 
-### Closures (Hello Again :D)
+- Functions in JavaScript is **first-class citizens**, it can:
+  - Assigned to a variable.
+  - Passed as an argument to a function.
+  - Returned from a function.
+- Two ways to define a function:
+  - Function declaration
+  - Function expression
+- Function declaration:
+  - Using function keyword, followed by the name of the function and the curly braces.
+  - function declaration is stored in the global execution context when JS engine runs the code, therefore when it gets to execution phase, it can be invoked.
+    - This behavior acts like a function is being moved to the top of the file, people call it `hoisting`, but it's not physically moving the function.
+- Function expression:
+  - Using equal sign `=` after the function keyword or arrow function `=>`.
+  - Function expression is not stored in the global execution context when JS engine runs the code, therefore when it gets to execution phase, it's in the temporal dead zone (TDZ) until execution reaches the line.
+- Function scope:
+  - Everything inside the function is being protected by the function scope.
+  - Function can access variables declared outside the function because of the scope chain.
