@@ -9,9 +9,11 @@ This is a 30 days of JavaScript programming language challenge aimed at helping 
 - Day 3: Execution Context
 - Day 4: Scope
 - Day 5: Closure
-- Day 6: Object part 1
-- Day 7: Object part 2
-- Day 8: Object part 3
+- Day 6: Object part 1 (General Overview)
+- Day 7: Object part 2 (this keyword and other related topics)
+- Day 8: Object part 3 (Garbage Collection)
+- Day 9: Object part 4 (Prototype Inheritance)
+- Day 10: Functions part 1 (General Overview)
 
 ## Published Articles
 
