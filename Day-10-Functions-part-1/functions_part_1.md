@@ -82,6 +82,8 @@ const greeting = () => {
 
 ### Main differences between function declaration and function expression
 
+#### Hoisting
+
 Let's review a very important concept - **Execution Context**, a execution context is created when JavaScript engine runs our code, when it runs, it creates a **global execution context**, imagine global execution context is a huge hidden map, and JavaScript will draw(store) all the variables declare with `var` and functions in the map.
 
 In this phase, only function declarations are being stored in the map, not function expressions, but why?
@@ -153,6 +155,8 @@ var greetingVar = function () {
 
 As you may notice that result of `greetingVar` is `undefined`, and when we try to invoke the function, it shows `TypeError`, because the function is not being stored in the global memory in the creation phase, it's just a variable with `undefined` value.
 
+#### this keyword
+
 ---
 
 ### Function Scope
@@ -179,3 +183,9 @@ const greeting = function () {
   console.log(message);
 };
 ```
+
+---
+
+### Recursion
+
+### Closures (Hello Again :D)
