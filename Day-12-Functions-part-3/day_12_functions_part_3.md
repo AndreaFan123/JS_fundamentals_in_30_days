@@ -59,6 +59,8 @@ Consider the code snippet below and let's break it down:
 })();
 ```
 
+This writing style is primarily used to ensure that the function is treated as an expression rather than a declaration, you might have seen people using `!`, `+`, `-`, `~` operators to achieve the same result, but this is not recommended because it can be confusing and not intuitive.
+
 ---
 
 ### Use Cases of IIFE

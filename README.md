@@ -14,6 +14,8 @@ This is a 30 days of JavaScript programming language challenge aimed at helping 
 - Day 8: Object part 3 (Garbage Collection)
 - Day 9: Object part 4 (Prototype Inheritance)
 - Day 10: Functions part 1 (General Overview)
+- Day 11: Functions part 2 (Higher Order Functions)
+- Day 12: Functions part 3 (IIFE)
 
 ## Published Articles
 
