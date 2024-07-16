@@ -16,6 +16,8 @@ This is a 30 days of JavaScript programming language challenge aimed at helping 
 - Day 10: Functions part 1 (General Overview)
 - Day 11: Functions part 2 (Higher Order Functions)
 - Day 12: Functions part 3 (IIFE)
+- Day 13: Functions Part 4 (Call Stack)
+- Day 14: Event Loop
 
 ## Published Articles
 
