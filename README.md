@@ -19,6 +19,7 @@ This is a 30 days of JavaScript programming language challenge aimed at helping 
 - Day 13: Functions Part 4 (Call Stack)
 - Day 14: Event Loop
 - Day 15: Promise
+- Day 16: Workers
 
 ## Published Articles
 
