@@ -142,4 +142,10 @@ Both `localStorage` and `sessionStorage` are synchronous in nature, if we want t
 
 So is there a way of storing data in asynchronous way? Yes, there is, and it is called IndexedDB. If the performance is a concern, we can use **IndexDB** instead of Web Storage.
 
-In short, IndexDB sovles the performance issue of Web Storage by providing an asynchronous way of storing data, including files and blobs.
+In short, IndexDB solves the performance issue of Web Storage by providing an asynchronous way of storing data, including files and blobs.
+
+#### Transactional Database System
+
+Like an SQL-based Relational Database Management System (RDBMS), IndexedDB is a transactional Database System, however, the difference is that IndexedDB is a JavaScript-based object-oriented database, which means it allows us to store and retrieve objects that are indexed with a **key**.
+
+Let's see the basic usage of IndexedDB:
