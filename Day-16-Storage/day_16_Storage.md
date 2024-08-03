@@ -149,3 +149,88 @@ In short, IndexDB solves the performance issue of Web Storage by providing an as
 Like an SQL-based Relational Database Management System (RDBMS), IndexedDB is a transactional Database System, however, the difference is that IndexedDB is a JavaScript-based object-oriented database, which means it allows us to store and retrieve objects that are indexed with a **key**.
 
 Let's see the basic usage of IndexedDB:
+
+```javascript
+// Open a database
+
+const request = indexedDB.open("myDatabase", 1);
+
+// Create a database
+
+request.onupgradeneeded = (event) => {
+  const db = event.target.result;
+  const objectStore = db.createObjectStore("customers", { keyPath: "id" });
+  objectStore.createIndex("name", "name", { unique: false });
+  objectStore.createIndex("email", "email", { unique: true });
+};
+
+// Add data to the database
+
+request.onsuccess = (event) => {
+  const db = event.target.result;
+  const transaction = db.transaction("customers", "readwrite");
+  const objectStore = transaction.objectStore("customers");
+  objectStore.add({ id: 1, name: "John Doe", email: "johndoe@test.con" });
+
+  transaction.oncomplete = () => {
+    console.log("Data added successfully");
+  };
+
+  transaction.onerror = () => {
+    console.log("Error adding data");
+  };
+};
+
+// Read data from the database
+
+request.onsuccess = (event) => {
+  const db = event.target.result;
+  const transaction = db.transaction("customers", "readonly");
+  const objectStore = transaction.objectStore("customers");
+  const request = objectStore.get(1);
+
+  request.onsuccess = () => {
+    console.log(request.result);
+  };
+};
+
+// Update data in the database
+
+request.onsuccess = (event) => {
+  const db = event.target.result;
+  const transaction = db.transaction("customers", "readwrite");
+  const objectStore = transaction.objectStore("customers");
+  const request = objectStore.get(1);
+
+  request.onsuccess = () => {
+    const data = request.result;
+    data.name = "Jane Doe";
+    objectStore.put(data);
+  };
+};
+
+// Delete data from the database
+
+request.onsuccess = (event) => {
+  const db = event.target.result;
+  const transaction = db.transaction("customers", "readwrite");
+  const objectStore = transaction.objectStore("customers");
+  objectStore.delete(1);
+};
+
+// Clear all data from the database
+
+request.onsuccess = (event) => {
+  const db = event.target.result;
+  const transaction = db.transaction("customers", "readwrite");
+  const objectStore = transaction.objectStore("customers");
+  objectStore.clear();
+};
+
+// Close the database
+
+request.onsuccess = (event) => {
+  const db = event.target.result;
+  db.close();
+};
+```
