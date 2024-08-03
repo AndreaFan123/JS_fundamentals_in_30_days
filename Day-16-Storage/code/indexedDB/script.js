@@ -27,8 +27,16 @@ request.onupgradeneeded = (e) => {
   objectStore.createIndex("age", "age", { unique: false });
 };
 
+const getAnEmployeeById = (id, action) => {
+  const transaction = db.transaction([objectStoreName], action);
+  const objectStore = transaction.objectStore(objectStoreName);
+  const request = objectStore.get(id);
+
+  return request;
+};
+
 // Add a person to db
-const addEmployee = () => {
+const addAnEmployee = () => {
   // Get id from html
   const name = document.getElementById('name').value;
   const age = document.getElementById('age').value;
@@ -54,14 +62,15 @@ const addEmployee = () => {
   };
 };
 
-// Get all persons from db
 
-const getAllEmployees = () => {
-  // Make sure that id is an integer
-  const id = parseInt(document.getElementById('employeeId').value);
-  const transaction = db.transaction([objectStoreName], 'readonly');
-  const objectStore = transaction.objectStore(objectStoreName);
-  const request = objectStore.getAll();
+
+
+// Get a person from db by name
+
+const getAnEmployee = () => {
+  // Make sure the id is an integer
+  const id = parseInt(document.getElementById('searchEmployee').value);
+  const request = getAnEmployeeById(id, 'readonly');
 
   // error or success handler
   request.onerror = () => {
@@ -69,17 +78,56 @@ const getAllEmployees = () => {
   };
 
   request.onsuccess = (e) => {
-    const employees = e.target.result;
-    let result = "";
-    employees.forEach(employee => {
-      result += `Name: ${employee.name}, Age: ${employee.age} <br>`;
-    });
-    document.getElementById('result').innerHTML = result;
+    const employee = e.target.result;
+    if (!employee) {
+      document.getElementById('result').innerHTML = "No Data Found";
+    }
+    if (employee) {
+      document.getElementById('result').innerHTML = `Name: ${employee.name} Age: ${employee.age}`;
+    }
   };
 };
 
-// Get a person from db by name
+// Update a person in db by id
 
-const getAEmployee = () => {
+const updateAnEmployeeData = () => {
+  const id = parseInt(document.getElementById('searchEmployee').value);
+  const name = document.getElementById('name').value;
+  const age = document.getElementById('age').value;
+  const transaction = db.transaction([objectStoreName], 'readwrite');
+  const objectStore = transaction.objectStore(objectStoreName);
+  const request = objectStore.get(id);
 
+
+
+  request.onerror = () => {
+    document.getElementById('result').innerHTML = "Error Getting Data";
+  };
+
+  request.onsuccess = () => {
+    const data = request.result;
+    if (data) {
+      data.name = name;
+      data.age = age;
+
+      const updateRequest = objectStore.app(data);
+      updateRequest.onsuccess = () => {
+        document.getElementById("result").innerHTML = "Employee updated Successfully";
+      };
+    }
+  };
+};
+const deleteAnEmployee = () => {
+  const id = parseInt(document.getElementById('searchEmployee').value);
+  const transaction = db.transaction([objectStoreName], 'readwrite');
+  const objectStore = transaction.objectStore(objectStoreName);
+  const request = objectStore.delete(id);
+
+  request.onerror = () => {
+    document.getElementById('result').innerHTML = "Could not delete! Please try again";
+  };
+
+  request.onsuccess = () => {
+    document.getElementById('result').innerHTML = "Employee deleted Successfully";
+  };
 };
