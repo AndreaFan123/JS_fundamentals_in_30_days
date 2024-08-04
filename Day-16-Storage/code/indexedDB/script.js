@@ -88,35 +88,6 @@ const getAnEmployee = () => {
   };
 };
 
-// Update a person in db by id
-
-const updateAnEmployeeData = () => {
-  const id = parseInt(document.getElementById('searchEmployee').value);
-  const name = document.getElementById('name').value;
-  const age = document.getElementById('age').value;
-  const transaction = db.transaction([objectStoreName], 'readwrite');
-  const objectStore = transaction.objectStore(objectStoreName);
-  const request = objectStore.get(id);
-
-
-
-  request.onerror = () => {
-    document.getElementById('result').innerHTML = "Error Getting Data";
-  };
-
-  request.onsuccess = () => {
-    const data = request.result;
-    if (data) {
-      data.name = name;
-      data.age = age;
-
-      const updateRequest = objectStore.app(data);
-      updateRequest.onsuccess = () => {
-        document.getElementById("result").innerHTML = "Employee updated Successfully";
-      };
-    }
-  };
-};
 
 // Delete an employee
 
