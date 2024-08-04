@@ -117,6 +117,9 @@ const updateAnEmployeeData = () => {
     }
   };
 };
+
+// Delete an employee
+
 const deleteAnEmployee = () => {
   const id = parseInt(document.getElementById('searchEmployee').value);
   const transaction = db.transaction([objectStoreName], 'readwrite');
